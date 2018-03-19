@@ -1,0 +1,32 @@
+.TH testando 1 "Março 2018" "versão 0.1" "Tópicos em Segurança"
+.SH NAME
+esquadrinhador \- um portscanner genérico feito para a disciplina de segurança
+.SH SYNOPSIS
+.B esquadrinhador
+[\fI\-d\fR] \fIENDEREÇOIP\fR[\fI\-RANGE\fR] [\fIPORTA\fR[\fI\-RANGE\fR]]
+.SH DESCRIPTION
+.PP
+.B esquadrinhador
+irá fazer um port scan no host especificado em \fIENDEREÇO IP\fR, ou, caso uma range tenha sido especificada, a range inteira será vasculhada.
+.PP
+Caso uma \fIPORTA\fR ou uma range de portas seja especificada, o programa irá fazer o portscan apenas nela, caso o contrário, todas as portas serão varridas.
+.PP
+O programa irá imprimir as portas abertas encontradas, bem como o banner/MOTD do processo escutando naquela porta, caso seja aplicável.
+.SH EXAMPLES
+.TP
+\fBesquadrinhador\fR \fI192.168.0.1\-10\fR
+Escaneia todas as portas de todos os hosts entre 192.168.0.1 e 192.168.0.10.
+.TP
+\fBesquadrinhador\fR \fI10.123.123.123\fR \fI1-1024\fR
+Escaneia as portas entre 1 e 1024 (inclusive) no host 10.123.123.213.
+.SH OPTIONS
+.TP
+.B \-d, \-\-debug
+Modo de debug ativo. Printa algumas informações úteis para debug do programa.
+.TP
+.B \-e, \-\-exploit\-db
+Em portas onda há banner/MOTD, procura pela string em alguma exploit DB da vida, procurando vulnerabilidades.
+.SH BUGS
+O programa nem existe ainda, vai ter bugs como? LUL.
+.SH AUTHOR
+Manual e software escritos por \fBKaio Augusto de Camargo\fR <\fIkac14@inf.ufpr.br\fR>.
