@@ -4,58 +4,58 @@
 
 namespace Util
 {
-    bool hasDebugFlag(int argc, char *argv[])
+  bool hasDebugFlag(int argc, char *argv[])
+  {
+    for(int i = 1; i < argc; i++)
     {
-        for(int i = 1; i < argc; i++)
-		{
-			std::string tmp = argv[i];
-            if(tmp == DEBUG_SHORT_PARAM || tmp == DEBUG_LONG_PARAM)
-                return true;
-		}
-
-        return false;
+      std::string tmp = argv[i];
+      if(tmp == DEBUG_SHORT_PARAM || tmp == DEBUG_LONG_PARAM)
+        return true;
     }
 
-	iparg_t parseInput(int argc, char *argv[])
-	{
-		iparg_t ret = {"", "", 1, DEFAULT_MAX_PORT};
-		bool foundIp = false;
+    return false;
+  }
 
-		for(int i = 1; i < argc; i++)
-		{
-			std::string tmp = argv[i];
-			if(tmp[0] == '-') continue;
-			
-			size_t dashpos = tmp.find("-");
+  iparg_t parseInput(int argc, char *argv[])
+  {
+    iparg_t ret = {"", "", 1, DEFAULT_MAX_PORT};
+    bool foundIp = false;
 
-			if(!foundIp)
-			{
-				if(dashpos == std::string::npos)
-					ret.startip = ret.endip = tmp;
-				else
-				{
-					ret.startip = tmp.substr(0, dashpos);
-					std::string lastoctet = tmp.substr(dashpos+1);
-					ret.endip = ret.startip.substr(0, ret.startip.rfind(".")+1) + lastoctet;
-				}
+    for(int i = 1; i < argc; i++)
+    {
+      std::string tmp = argv[i];
+      if(tmp[0] == '-') continue;
 
-				foundIp = true;
-			}
-			else
-			{
-				if(dashpos == std::string::npos)
-					ret.startport = ret.endport = std::stoi(tmp);
-				else
-				{
-					ret.startport = std::stoi(tmp.substr(0, dashpos));
-					ret.endport = std::stoi(tmp.substr(dashpos+1));
-				}
-				return ret;
-			}
-		}
+      size_t dashpos = tmp.find("-");
 
-		return ret;
-	}
+      if(!foundIp)
+      {
+        if(dashpos == std::string::npos)
+          ret.startip = ret.endip = tmp;
+        else
+        {
+          ret.startip = tmp.substr(0, dashpos);
+          std::string lastoctet = tmp.substr(dashpos+1);
+          ret.endip = ret.startip.substr(0, ret.startip.rfind(".")+1) + lastoctet;
+        }
+
+        foundIp = true;
+      }
+      else
+      {
+        if(dashpos == std::string::npos)
+          ret.startport = ret.endport = std::stoi(tmp);
+        else
+        {
+          ret.startport = std::stoi(tmp.substr(0, dashpos));
+          ret.endport = std::stoi(tmp.substr(dashpos+1));
+        }
+        return ret;
+      }
+    }
+
+    return ret;
+  }
 
 
 }

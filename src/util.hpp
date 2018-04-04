@@ -9,14 +9,14 @@
 #include <string>
 
 typedef struct {
-	std::string startip, endip;
-	int startport, endport;
+  std::string startip, endip;
+  int startport, endport;
 } iparg_t;
 
 namespace Util
 {
-    bool hasDebugFlag(int argc, char *argv[]);
-	iparg_t parseInput(int argc, char *argv[]);
+  bool hasDebugFlag(int argc, char *argv[]);
+  iparg_t parseInput(int argc, char *argv[]);
 }
 
 #endif
