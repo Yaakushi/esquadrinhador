@@ -17,6 +17,7 @@ namespace Util
 {
   bool hasDebugFlag(int argc, char *argv[]);
   iparg_t parseInput(int argc, char *argv[]);
+  std::string nextIp(std::string currentIp);
 }
 
 #endif
