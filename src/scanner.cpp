@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include "scanner.hpp"
 
 namespace Scanner
@@ -18,7 +19,11 @@ namespace Scanner
       return NULL;
     }
 
-    if(connect(sockid, /*(sockkaddr*)*/ &addr, sizeof(addr)) != 0)
+    addr.sin_family = AF_INET;
+    addr.sin_port = port;
+    inet_aton(host.c_str(), &(addr.sin_addr));
+
+    if(connect(sockid, (sockaddr *) &addr, sizeof(addr)) != 0)
     {
     }
 
