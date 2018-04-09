@@ -1,5 +1,6 @@
 #include <iostream>
 #include "util.hpp"
+#include "scanner.hpp"
 
 int main(int argc, char *argv[]) {
   bool debugMode = Util::hasDebugFlag(argc, argv);
@@ -20,14 +21,13 @@ int main(int argc, char *argv[]) {
   std::string curAddr = iparg.startip;
   std::string endAddr = Util::nextIp(iparg.endip);
 
-  std::cout << endAddr << " (" << iparg.endip << ")." << std::endl;
-
   do
   {
     if(debugMode) std::cout << "[DEBUG] Scanning " << curAddr << "." << std::endl;
 
     curAddr = Util::nextIp(curAddr);
     //std::cout << endAddr << " != " << curAddr << std::endl;
+	Scanner::scan(curAddr, iparg.startport, debugMode);
   }
   while(curAddr != endAddr);
   return 0;
