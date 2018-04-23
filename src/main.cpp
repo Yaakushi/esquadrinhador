@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
     {
         std::cout << std::endl << "Scanning " << curAddr << "." << std::endl;
 
-        curAddr = Util::nextIp(curAddr);
         //std::cout << endAddr << " != " << curAddr << std::endl;
         for(int porta = iparg.startport; porta <= iparg.endport; porta++)
         {
@@ -42,7 +41,10 @@ int main(int argc, char *argv[]) {
             if(res.isOpen) 
                 std::cout << '\r' << '\t' << porta << ": [" << res.banner << "]" << std::endl;
         }
+
         std::cout << '\r' << "Done scanning " << curAddr << "." << std::endl;
+
+        curAddr = Util::nextIp(curAddr);
 
     }
     while(curAddr != endAddr);
