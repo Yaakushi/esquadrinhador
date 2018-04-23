@@ -2,6 +2,8 @@
 #include "util.hpp"
 #include "scanner.hpp"
 
+//#define DONT_PRINT_CURRENT_PORT
+
 int main(int argc, char *argv[]) {
     bool debugMode = Util::hasDebugFlag(argc, argv);
 
@@ -36,7 +38,9 @@ int main(int argc, char *argv[]) {
         for(int porta = iparg.startport; porta <= iparg.endport; porta++)
         {
             if(debugMode) std::cout << "[DEBUG] Scanning port " << porta << "." << std::endl;
+#ifndef DONT_PRINT_CURRENT_PORT
             else std::cout << '\r' << '\t' << porta << std::flush;
+#endif
             res = Scanner::scan(curAddr, porta, debugMode);
             if(res.isOpen) 
                 std::cout << '\r' << '\t' << porta << ": [" << res.banner << "]" << std::endl;
