@@ -9,15 +9,15 @@
 #include <string>
 
 typedef struct {
-  std::string startip, endip;
-  int startport, endport;
+    std::string startip, endip;
+    int startport, endport;
 } iparg_t;
 
 namespace Util
 {
-  bool hasDebugFlag(int argc, char *argv[]);
-  iparg_t parseInput(int argc, char *argv[]);
-  std::string nextIp(std::string currentIp);
+    bool hasDebugFlag(int argc, char *argv[]);
+    iparg_t parseInput(int argc, char *argv[]);
+    std::string nextIp(std::string currentIp);
 }
 
 #endif
